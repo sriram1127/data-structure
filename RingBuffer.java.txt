@@ -1,3 +1,6 @@
+//https://coderworld109.blogspot.com/2017/12/circular-queue-introduction-and-array.html
+
+
 public class RingBuffer{
 	Integer[] buffer = null;
 	int size = 0;
