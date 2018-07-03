@@ -1,0 +1,54 @@
+public class RingBuffer{
+	Integer[] buffer = null;
+	int size = 0;
+	int front = -1;
+	int rear = -1;
+	
+	public RingBuffer(int size){
+		this.size = size;
+		buffer = new Integer[size];
+	}
+	
+	public void printBuffer(){
+		System.out.println(Arrays.toString(buffer));
+	}
+	
+	private boolean isEmpty(){
+		return (front == -1 && rear == -1);
+	}
+	
+	private boolean isFull(){
+		return (front == 0 && rear == size - 1) || front == rear + 1;
+	}
+	
+	public boolean enQueue(int e){
+		if(isFull()){
+			System.out.println("Buffer is full");
+			return false;
+		}
+		rear = (rear + 1) % size;
+		buffer[rear] = e; 
+		if(front == -1){
+			front = 0;
+		}
+		printBuffer();
+		return true;
+	}
+	
+	public Integer deQueue(){
+		if(isEmpty()){
+			System.out.println("Buffer is Empty");
+			return null;
+		}
+		int temp = buffer[front];
+		buffer[front] = null;
+		if(front == rear){
+			front = -1;
+			rear = -1;
+		}else{
+		    front = (front + 1) % size;
+		}
+		printBuffer();
+		return temp;
+	}
+}
